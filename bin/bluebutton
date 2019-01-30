@@ -31,6 +31,16 @@ if opts[:config]
       actions[:longdown] = ->{system(line.split('=')[1].strip)}
     elsif line['longup']
       actions[:longup]   = ->{system(line.split('=')[1].strip)}
+    elsif line['volumeup']
+      actions[:volumeup]   = ->{system(line.split('=')[1].strip)}
+    elsif line['volumedown']
+      actions[:volumedown]   = ->{system(line.split('=')[1].strip)}
+    elsif line['nextsong']
+      actions[:nextsong]   = ->{system(line.split('=')[1].strip)}
+    elsif line['previoussong']
+      actions[:previoussong]   = ->{system(line.split('=')[1].strip)}
+    elsif line['playpause']
+      actions[:playpause]   = ->{system(line.split('=')[1].strip)}
     elsif line['connected']
       actions[:connected]   = ->{system(line.split('=')[1].strip)}
     end
@@ -50,6 +60,11 @@ while true do
     button.on_keyup    = actions[:keyup]    || -> {puts "Key released"}
     button.on_longdown = actions[:longdown] || -> {puts "Long pressed"}
     button.on_longup   = actions[:longup]   || -> {puts "Long released"}
+    button.on_volumeup     = actions[:volumeup]     || -> {puts "VolumeUp"}
+    button.on_volumedown   = actions[:volumedown]   || -> {puts "VolumeDown"}
+    button.on_nextsong     = actions[:nextsong]     || -> {puts "NextSong"}
+    button.on_previoussong = actions[:previoussong] || -> {puts "PreviousSong"}
+    button.on_playpause    = actions[:playpause]    || -> {puts "PlayPause"}
     button.on_connected   = actions[:connected]   || -> {puts "Connected"}
     puts "Reading events from #{button.device}..."
     button.run

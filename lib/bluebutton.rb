@@ -7,6 +7,11 @@ class Bluebutton
   attr_accessor :on_keyup
   attr_accessor :on_longdown
   attr_accessor :on_longup
+  attr_accessor :on_volumeup
+  attr_accessor :on_volumedown
+  attr_accessor :on_nextsong
+  attr_accessor :on_previoussong
+  attr_accessor :on_playpause
   attr_accessor :device
 
   def initialize name
@@ -33,6 +38,17 @@ class Bluebutton
           #puts event
           if event.value > 0
             key_down event
+            if event.code == 'VolumeUp'
+              @on_volumeup.call if @on_volumeup
+            elsif event.code == 'VolumeDown'
+              @on_volumedown.call if @on_volumedown
+            elsif event.code == 'NextSong'
+              @on_nextsong.call if @on_nextsong
+            elsif event.code == 'PreviousSong'
+              @on_previoussong.call if @on_previoussong
+            elsif event.code == 'PlayPause'
+              @on_playpause.call if @on_playpause
+            end
           else
             key_up event
           end

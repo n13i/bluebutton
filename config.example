@@ -1,4 +1,5 @@
-keyup=echo UP
-keydown=echo down; echo DOWN
-longup=echo LONG UP
-longdown=echo LONG DOWN
+volumeup=mpc volume +5
+volumedown=mpc volume -5
+nextsong=mpc next
+previoussong=mpc prev
+playpause=mpc toggle
