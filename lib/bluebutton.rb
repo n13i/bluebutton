@@ -38,17 +38,6 @@ class Bluebutton
           #puts event
           if event.value > 0
             key_down event
-            if event.code == 'VolumeUp'
-              @on_volumeup.call if @on_volumeup
-            elsif event.code == 'VolumeDown'
-              @on_volumedown.call if @on_volumedown
-            elsif event.code == 'NextSong'
-              @on_nextsong.call if @on_nextsong
-            elsif event.code == 'PreviousSong'
-              @on_previoussong.call if @on_previoussong
-            elsif event.code == 'PlayPause'
-              @on_playpause.call if @on_playpause
-            end
           else
             key_up event
           end
@@ -60,6 +49,17 @@ class Bluebutton
   def key_down event
     if @pressed.nil?
       @on_keydown.call if @on_keydown
+      if event.code == 'VolumeUp'
+        @on_volumeup.call if @on_volumeup
+      elsif event.code == 'VolumeDown'
+        @on_volumedown.call if @on_volumedown
+      elsif event.code == 'NextSong'
+        @on_nextsong.call if @on_nextsong
+      elsif event.code == 'PreviousSong'
+        @on_previoussong.call if @on_previoussong
+      elsif event.code == 'PlayPause'
+        @on_playpause.call if @on_playpause
+      end
       @pressed = Time.now
     elsif @long.nil? && @pressed < (Time.now - 1)
       @on_longdown.call if @on_longdown

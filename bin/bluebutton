@@ -72,9 +72,6 @@ while true do
     $stderr.puts e.message
   end
 
-  sleep 3
- end
-
-
-
+  sleep 1
+end
 
